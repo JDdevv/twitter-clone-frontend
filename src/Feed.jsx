@@ -1,15 +1,12 @@
 import React from "react";
-import Tweet from "./tweet";
-
+import Tweet from "./Tweet";
+import Container from "./Generic/Container"
 
 function Feed( props ) {
     return ( 
-        <div>
-            { props.tweets.map( tweet => {
-                return (<Tweet key={tweet._id} tweet={tweet} />)
-            })
-        }
-        </div>
+        <Container styles="feed">
+            { props.tweets.map( tweet => <Tweet key={tweet._id} tweet={tweet} />  ) } 
+        </Container>
     )
 }
 export default Feed
