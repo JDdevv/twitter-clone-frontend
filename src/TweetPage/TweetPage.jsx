@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Tweet from "../Tweet";
+import Tweet from "./Tweet";
 import axios from "axios";
 import Feed from "../Feed";
-import getReplies from "../getReplies";
-import checkLogin from "../checkLogin";
+import getReplies from "./getReplies";
 import getTweet from "./getTweet";
 import ReplieInput from "./ReplieInput";
 
@@ -14,6 +13,7 @@ function TweetPage( props ) {
     const [ tweet , setTweet ] = useState(null)
     const [ replies , setReplies ] = useState([])
     function updateReplies() {
+        //Update tweet to update stats
         getTweet(tweetId).then( tweet => setTweet(tweet))
         getReplies(tweetId).then( replies => setReplies(replies)) 
 
@@ -21,6 +21,7 @@ function TweetPage( props ) {
     useEffect( () => {
         // GET THE TWEET
         getTweet(tweetId).then( tweet => setTweet(tweet))
+        //Get the replies
         getReplies(tweetId).then(replies => setReplies(replies))
     },[tweetId])
 

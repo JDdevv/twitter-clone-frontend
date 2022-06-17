@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import checkLogin from "./checkLogin";
+import checkLogin from "../checkLogin";
 import { useNavigate } from "react-router-dom";
-import Container from "./Generic/Container";
-import SmallHeading from "./Generic/SmallHeading"
+import Container from "../Generic/Container";
+import SmallHeading from "../Generic/SmallHeading"
 import { Link } from "react-router-dom";
-import Text from "./Generic/Text"
-import Button from "./Generic/Button"
+import Text from "../Generic/Text"
+import Button from "../Generic/Button"
 function Tweet( props ) {
     const navigate = useNavigate()
     const [ liked , setLiked ] = useState( props.tweet.like ) 
