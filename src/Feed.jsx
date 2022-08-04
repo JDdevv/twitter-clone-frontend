@@ -1,5 +1,5 @@
 import React from "react";
-import Tweet from "./Tweet";
+import Tweet from "./Tweet/Tweet";
 import Container from "./Generic/Container"
 
 function Feed( props ) {

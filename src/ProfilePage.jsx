@@ -15,7 +15,10 @@ function ProfilePage() {
     const [ user , setUser ] = useState(null)
     const [ tweets , setTweets ] = useState([])
     const [ error , setError ] = useState(null)
+    //The sameUser field determines if the user being displayed is the same as the user logged.
+    //This is important to know because the gui changes basing on that fact
     const [ sameUser , setSameUser ] = useState(false)
+    //Determines if the logged user is following the user being displayed.
     const [ isFollowing , setIsFollowing ] = useState( null)
     function follow() {
         checkLogin().then( logged => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Tweet from "../Tweet";
+import Tweet from "../Tweet/Tweet";
 import axios from "axios";
 import Feed from "../Feed";
 import getReplies from "../getReplies";
@@ -21,7 +21,9 @@ function TweetPage( props ) {
     useEffect( () => {
         // GET THE TWEET
         getTweet(tweetId).then( tweet => setTweet(tweet))
-        getReplies(tweetId).then(replies => setReplies(replies))
+        checkLogin().then( logged => {
+            getReplies(tweetId).then(replies => setReplies(replies))
+        })
     },[tweetId])
 
     return ( 
