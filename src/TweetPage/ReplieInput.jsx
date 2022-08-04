@@ -3,7 +3,7 @@ import checkLogin from "../checkLogin"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react"
-import getReplies from "../getReplies"
+import getReplies from "./getReplies"
 
 
 
