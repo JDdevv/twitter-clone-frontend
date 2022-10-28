@@ -6,10 +6,13 @@ import Container from "../Generic/Container";
 import SmallHeading from "../Generic/SmallHeading"
 import { Link } from "react-router-dom";
 import Text from "../Generic/Text"
-import Button from "../Generic/Button"
+import { useEffect } from "react";
 function Tweet( props ) {
     const navigate = useNavigate()
     const [ liked , setLiked ] = useState( props.tweet.like ) 
+    useEffect( () => {
+        setLiked((props.tweets.like))
+    },[props.tweet.like])
     function like() {
         checkLogin().then( logged => {
             if ( !logged ) return navigate("/login")
@@ -17,8 +20,6 @@ function Tweet( props ) {
                 headers :{
                     "Authorization":localStorage.getItem("accessToken")
                 }
-            }).then( response => {
-                if ( response.status === 200 ) setLiked( prevState => !prevState ) 
             })
            
         })        

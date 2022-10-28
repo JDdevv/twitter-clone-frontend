@@ -10,15 +10,12 @@ async function getTweet( tweetId ) {
  
     await axios.get("http://localhost:5000/tweets/"+tweetId)
     .then( response => {
-<<<<<<< HEAD
         if ( response.status === 200 ) tweet = response.data
         console.log(response)
-=======
         if ( response.status === 200 ) {
             tweet = response.data.tweet
             console.log(tweet,"tweet")
         }
->>>>>>> 0400cc4df17903845d8275b9a832f8d3991fac87
     })
     .catch( err => {
         tweet = false

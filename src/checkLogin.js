@@ -31,7 +31,8 @@ async function checkLogin() {
                 logged= false
             })
     })
-
+    //Returns true if the user was logged succefully
+    //False if the user could not be logged
     return logged
 }
 
