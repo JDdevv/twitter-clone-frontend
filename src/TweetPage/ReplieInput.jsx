@@ -1,9 +1,8 @@
 import React from "react"
-import checkLogin from "../checkLogin"
+import checkLogin from "../GeneralUseFunctions/checkLogin"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react"
-import getReplies from "./getReplies"
 
 
 

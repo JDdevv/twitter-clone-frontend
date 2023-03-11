@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import checkLogin from "../checkLogin";
+import checkLogin from "../GeneralUseFunctions/checkLogin";
 import { useNavigate } from "react-router-dom";
 import Container from "../Generic/Container";
 import SmallHeading from "../Generic/SmallHeading"

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import checkLogin from "./checkLogin";
+import checkLogin from "../GeneralUseFunctions/checkLogin";
 import { useNavigate } from "react-router-dom";
+import postData from "../GeneralUseFunctions/postData";
 
 
 function Login(props) {
@@ -14,23 +15,19 @@ function Login(props) {
     }
     function sendData(e) {
         e.preventDefault()
-        axios.post( "http://localhost:4000/login" , 
-        {
+        postData("http://localhost:4000/login", {
             "username":username,
             "password":password
-        })
-        .then( response => {
-            saveTokens(response.data)
+        },false).then( response => {
+            if ( response ) {
+            saveTokens(response)
             checkLogin().then( logged => {
                 if( logged ) navigate("/")
             })
+
+            }
         })
-        .catch( err => {
-            console.log( err ) 
-        },{
-            headers:{"Content-Type":"application/json"}
-        })
-    }
+}
 
     return ( 
         <div>
@@ -38,7 +35,6 @@ function Login(props) {
                 <input type="text" onChange={(e) => setUsername(e.target.value)} value={username} />
                 <input type="text" onChange={(e) => setPassword(e.target.value)} value={password} />
                 <button>Login</button>
-
             </form>
         </div>
     )

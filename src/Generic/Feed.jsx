@@ -1,5 +1,5 @@
 import React from "react";
-import Tweet from "./Tweet/Tweet";
+import Tweet from "../Tweet/Tweet";
 
 function Feed( props ) {
     return (

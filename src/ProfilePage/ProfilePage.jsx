@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import getData from "../GeneralUseFunctions/getData";
 import { useNavigate, useParams, } from "react-router-dom";
-import Feed from "./Feed";
-import checkLogin from "./checkLogin";
+import Feed from "../Generic/Feed";
+import checkLogin from "../GeneralUseFunctions/checkLogin";
 const userNotFound = {
     username : "User does not exists",
     description : "",
@@ -29,7 +30,12 @@ function ProfilePage() {
                 }
             }).then( response => {
                 if ( response.status === 200 ) {
-                    setIsFollowing( prevState => !prevState)
+                    getData( "http://localhost:4000/userinfo/"+userId, true).then( user => {
+                        if (!user) return setUser(false)
+                        setUser(user)
+                        setSameUser(user.sameUser)
+                        setIsFollowing(user.isFollowing)
+                    })
                 }
             })
         })
@@ -40,36 +46,19 @@ function ProfilePage() {
         //GET THE USER
         //Checking if the user is logged and updating its credentials so the servers gets the right infromation
         checkLogin().then( logged => {
-                axios.get("http://localhost:4000/userinfo/"+userId,{
-                    headers : {
-                        "Authorization": localStorage.getItem("accessToken")
-                    }
-                })
-                .then( response => {
-                    console.log(response)
-                    setUser(response.data.user)
-                    setSameUser(response.data.user.sameUser)
-                    setIsFollowing(response.data.user.isFollowing)
-                })
-                .catch( err => {
-                    if ( err.response.status === 404 ) return setUser( userNotFound )
-                    if ( err.response.status === 500 ) return setError( "Internal server error")
-                    return setError("error")
+                getData( "http://localhost:4000/userinfo/"+userId,true).then( user => {
+                    console.log(user)
+                    if (!user) return setUser(false)
+                    setUser(user)
+                    setSameUser(user.sameUser)
+                    setIsFollowing(user.isFollowing)
                 })
                 //GET THE TWEETS
-                axios.get("http://localhost:5000/tweets/user/"+userId,{
-                    headers:{
-                        "Authorization":localStorage.getItem("accessToken")
-                    }
-                })
-                .then( response => {
-                    console.log(response)
-                    setTweets(response.data.tweets)
-                })
-                .catch( err => {
-                    if ( err.response ) setError( err.response.data )
+                getData("http://localhost:5000/5000/tweets/user/"+userId,true).then( tweets => {
+                    setTweets(tweets)
                 })
 
+                
         })
             },[userId])
     return ( 
@@ -86,7 +75,7 @@ function ProfilePage() {
                 <p>Following {user.following.length}</p>
             </div>
             }
-            <Feed tweets={tweets} />
+            {tweets && <Feed tweets={tweets} />}
             { error && <p>{error}</p>}
         </div>
     )

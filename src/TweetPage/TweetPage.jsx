@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Tweet from "../Tweet/Tweet";
-import Feed from "../Feed"
-import getData from "../getData";
+import Feed from "../Generic/Feed"
+import getData from "../GeneralUseFunctions/getData";
 import ReplieInput from "./ReplieInput";
-import checkLogin from "../checkLogin";
+import checkLogin from "../GeneralUseFunctions/checkLogin";
 //This is the page that shows a tweet and its replies
 function TweetPage( props ) {
     const { tweetId } = useParams()
