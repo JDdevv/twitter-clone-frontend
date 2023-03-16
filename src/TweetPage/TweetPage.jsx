@@ -16,12 +16,10 @@ function TweetPage( props ) {
         getData('http://localhost:5000/tweets/'+tweetId,true).then( tweet =>{ 
             setTweet(tweet)
         })
-        getData('http://localhost:5000/replies/'+tweetId,true).then(replies => {
+        getData("http://localhost:5000/replies/"+tweetId,true).then( replies => {
             setReplies(replies)
         })
-
-
-
+        
     }
     //When the page is loaded requests are made to the server to get the tweet and its replies
     //For this we use the tweet id indicated in the url

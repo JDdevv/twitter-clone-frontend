@@ -15,7 +15,7 @@ function TweetInput () {
         if ( tweet === "" ) return
         checkLogin().then( logged => {
             if (!logged) return navigate("/login")
-            postData("http://localhost:5000/tweet", tweet)
+            postData("http://localhost:5000/tweet", tweet,true)
         })
     }
 

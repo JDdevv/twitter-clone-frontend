@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import checkLogin from "../GeneralUseFunctions/checkLogin";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,11 @@ function Tweet( props ) {
     const [ liked , setLiked ] = useState( props.tweet.like ) 
     //Save the stats of the tweet
     const [ stats , setStats ] = useState( props.tweet.stats)
-    console.log(props.tweet[0], "likes")
+    useEffect( () => {
+        setStats( props.tweet.stats)
+    },[props.tweet])
+        
+    
     function like() {
         checkLogin().then( logged => {
             if ( !logged )  navigate("/login")

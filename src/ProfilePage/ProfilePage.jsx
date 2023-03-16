@@ -54,7 +54,7 @@ function ProfilePage() {
                     setIsFollowing(user.isFollowing)
                 })
                 //GET THE TWEETS
-                getData("http://localhost:5000/5000/tweets/user/"+userId,true).then( tweets => {
+                getData("http://localhost:5000/tweets/user/"+userId,true).then( tweets => {
                     setTweets(tweets)
                 })
 

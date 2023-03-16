@@ -11,7 +11,7 @@ async function postData( url , content,authorizationNeeded ) {
     if ( authorizationNeeded ) {
         config.headers.authorization = localStorage.getItem("accessToken")
     }
-    await axios.post( url, content, config).then( response => {
+    await axios.post( url, {content:content}, config).then( response => {
         if ( response.status < 400 ) data = response.data
     }).catch( 
         data = false

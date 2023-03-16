@@ -3,6 +3,7 @@ import checkLogin from "../GeneralUseFunctions/checkLogin"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react"
+import postData from "../GeneralUseFunctions/postData"
 
 
 
@@ -14,18 +15,10 @@ function ReplieInput(props) {
         e.preventDefault()
         checkLogin().then( logged => {
             if ( !logged ) return navigate("/login")
-            axios.post("http://localhost:5000/replies/"+tweetId,
-            {
-                content:replie
-            },
-            {
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization":localStorage.getItem("accessToken")
-                }
+            postData("http://localhost:5000/replies/"+tweetId,replie,true).then(data => {
+                console.log(data)
+                props.handler()
             })
-            .then(response => props.handler())
-        
         })
     }
  
