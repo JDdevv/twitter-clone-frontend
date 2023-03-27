@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import checkLogin from "../GeneralUseFunctions/checkLogin";
 import { useNavigate } from "react-router-dom";
-import postData from "../GeneralUseFunctions/postData";
+import Button from "../Generic/Button"
+import Section from "../Generic/Section"
+import postData from "../GeneralUseFunctions/postData"
 
 
 function Login(props) {
@@ -30,13 +31,14 @@ function Login(props) {
 }
 
     return ( 
-        <div>
+        <Section>
             <form onSubmit={sendData} action="POST">
                 <input type="text" onChange={(e) => setUsername(e.target.value)} value={username} />
                 <input type="text" onChange={(e) => setPassword(e.target.value)} value={password} />
-                <button>Login</button>
+                <Button text="login"/>
             </form>
-        </div>
+        </Section>
+
     )
 }
 

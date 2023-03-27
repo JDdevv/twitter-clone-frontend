@@ -8,7 +8,6 @@ async function getStats(tweetId) {
     //This is made to return the data from the request and not the actual request promise
     await axios.get("http://localhost:5000/stats/"+tweetId)
     .then( response => {
-        console.log(response,"respuesta")
         if ( response.status === 200 ) {
             stats = response.data
         }
